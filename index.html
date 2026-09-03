@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechStore - Loja Virtual</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="header-top">
+            <div class="logo-container">
+                <img src="imagens/logo.png" alt="Logo TechStore" class="logo" onerror="this.src='https://via.placeholder.com/40'">
+                <h1>TechStore</h1>
+            </div>
+            
+            <div class="header-actions">
+                <button id="theme-toggle" class="btn-icon" title="Alternar Modo Escuro">🌙</button>
+                <button id="cart-toggle" class="btn-icon" title="Carrinho">
+                    🛒 <span id="cart-count">0</span>
+                </button>
+                <button id="menu-toggle" class="btn-icon mobile-only" title="Menu">☰</button>
+            </div>
+        </div>
+
+        <nav id="nav-menu">
+            <ul>
+                <li><a href="#banner">Início</a></li>
+                <li><a href="#produtos">Produtos</a></li>
+                <li><a href="#favoritos">Favoritos (<span id="fav-count">0</span>)</a></li>
+                <li><a href="#carrinho">Carrinho</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Mensagem de Notificação -->
+    <div id="toast" class="toast hidden">Produto adicionado ao carrinho! 🔔</div>
+
+    <main>
+        <!-- Banner Principal -->
+        <section id="banner" class="banner">
+            <div class="banner-content">
+                <h2>Tecnologia de Ponta ao Seu Alcance</h2>
+                <p>Confira as melhores ofertas e promoções exclusivas da semana!</p>
+                <a href="#produtos" class="btn-banner">Ver Ofertas</a>
+            </div>
+        </section>
+
+        <!-- Filtros e Busca -->
+        <section id="produtos" class="controles-produtos">
+            <h2>🛍️ Nossos Produtos</h2>
+            
+            <div class="busca-filtro-container">
+                <input type="text" id="input-busca" placeholder="🔎 Pesquisar produtos por nome ou descrição...">
+                
+                <div class="categorias-btns">
+                    <button class="btn-filtro active" onclick="filtrarCategoria('todos')">Todos</button>
+                    <button class="btn-filtro" onclick="filtrarCategoria('smartphones')">Smartphones</button>
+                    <button class="btn-filtro" onclick="filtrarCategoria('notebooks')">Notebooks</button>
+                    <button class="btn-filtro" onclick="filtrarCategoria('acessorios')">Acessórios</button>
+                    <button class="btn-filtro" onclick="filtrarCategoria('promocao')">🏷️ Promoções</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lista de Produtos -->
+        <section class="produtos-grid" id="grid-produtos">
+            <!-- Injetado dinamicamente via JS -->
+        </section>
+
+        <!-- Lista de Favoritos -->
+        <section id="favoritos" class="secao-container">
+            <h2>❤️ Meus Favoritos</h2>
+            <div id="grid-favoritos" class="produtos-grid">
+                <p class="mensagem-vazia">Nenhum produto favoritado ainda.</p>
+            </div>
+        </section>
+
+        <!-- Carrinho de Compras -->
+        <aside id="carrinho" class="secao-container carrinho-secao">
+            <h2>🧾 Carrinho de Compras</h2>
+            <div id="itens-carrinho" class="itens-carrinho-lista">
+                <p class="mensagem-vazia">Seu carrinho está vazio.</p>
+            </div>
+
+            <div class="resumo-carrinho">
+                <h3>Total: R$ <span id="valor-total">0,00</span></h3>
+                <button class="btn-finalizar" onclick="abrirCheckout()">Ir para Finalização</button>
+            </div>
+        </aside>
+
+        <!-- Formulário de Finalização/Checkout -->
+        <section id="checkout" class="secao-container hidden">
+            <h2>💳 Finalizar Compra</h2>
+            <form id="form-checkout" onsubmit="finalizarCompra(event)">
+                <div class="form-group">
+                    <label for="nome-cliente">Nome Completo:</label>
+                    <input type="text" id="nome-cliente" required placeholder="Digite seu nome">
+                </div>
+                <div class="form-group">
+                    <label for="email-cliente">E-mail:</label>
+                    <input type="email" id="email-cliente" required placeholder="seu@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="endereco-cliente">Endereço de Entrega:</label>
+                    <input type="text" id="endereco-cliente" required placeholder="Rua, número, bairro">
+                </div>
+                <div class="form-group">
+                    <label for="pagamento">Forma de Pagamento:</label>
+                    <select id="pagamento" required>
+                        <option value="pix">PIX</option>
+                        <option value="cartao">Cartão de Crédito</option>
+                        <option value="boleto">Boleto Bancário</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-confirmar">Confirmar e Pagar</button>
+            </form>
+        </section>
+
+        <!-- Área de Contato -->
+        <section id="contato" class="secao-container">
+            <h2>📞 Fale Conosco</h2>
+            <div class="contato-content">
+                <p>📍 Endereço: Av. Principal, 1000 - Centro</p>
+                <p>📧 E-mail: suporte@techstore.com</p>
+                <p>📱 WhatsApp: (11) 99999-8888</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 TechStore - Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
